@@ -37,12 +37,8 @@
 | 30 | **nmap --script smb-os-discovery.nse [Target IP Address]** |  | determine the OS, computer name, domain, workgroup, and current time over the SMB protocol  |
 | 31 | **nmap -Pn -sS -A -oX Test 10.10.1.0/24**  |  |  |
 | 32  | `locate filename` |  |  |
-
-
-
+| --- | --- | --- | --- |
 # All port command
-
-
 |  searchsploit -m unix/remote/49757.py | aise hum doenload krege exploit ko   or use google github |
 | python3 [49757.py](http://49757.py/) -h   | -h means help command to check use of exploit |
 |  python3 [49757.py](http://49757.py/)  192.168.0.102 | usage: [49757.py](http://49757.py/) [-h] host    |
