@@ -38,7 +38,7 @@
 | 31 | **nmap -Pn -sS -A -oX Test 10.10.1.0/24**  |  |  |
 | 32  | `locate filename` |  |  |
 
----
+
 
 # All port command
 
